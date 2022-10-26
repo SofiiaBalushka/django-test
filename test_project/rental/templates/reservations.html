@@ -1,0 +1,34 @@
+<style>
+    table th,
+    table td {
+        width: 180px;
+        border: 1px solid #000;
+        text-align: center;
+    }
+    table th {
+        font-weight: 700;
+    } 
+    table td {
+        font-weight: 400;
+    } 
+</style>
+
+<h2>Reservations list</h2>
+<table>
+    <tr>
+        <th>Rental_name</th>
+        <th>ID</th>
+        <th>Checkin</th>
+        <th>Checkout</th>
+        <th>Previous reservation  ID</th>
+    </tr>
+    {% for reservation in reservations %}
+        <tr>
+            <td>{{reservation.rental.name}}</td>
+            <td>{{reservation.pk}}</td>
+            <td>{{reservation.checkin|date:'Y-m-d'}}</td>
+            <td>{{reservation.checkout|date:'Y-m-d'}}</td>
+            <td>{% if reservation.prev_reserv_id %} {{ reservation.prev_reserv_id }} {% else %} - {% endif %}</td>
+        </tr>
+    {% endfor %}
+</table>
