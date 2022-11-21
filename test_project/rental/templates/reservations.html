@@ -28,7 +28,7 @@
             <td>{{reservation.pk}}</td>
             <td>{{reservation.checkin|date:'Y-m-d'}}</td>
             <td>{{reservation.checkout|date:'Y-m-d'}}</td>
-            <td>{% if reservation.prev_reserv_id %} {{ reservation.prev_reserv_id }} {% else %} - {% endif %}</td>
+            <td>{{reservation.prev_reserv_id|default:'-'}}</td>
         </tr>
     {% endfor %}
 </table>

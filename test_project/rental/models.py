@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from django.db import models
 from django.db.models import OuterRef, Subquery
 
@@ -25,6 +23,7 @@ class Reservation(models.Model):
     @classmethod 
     def reservations_qs(cls):
         return cls.objects\
+        .select_related('rental')\
         .annotate(
             prev_reserv_id=Subquery(
                 cls.objects.filter(
